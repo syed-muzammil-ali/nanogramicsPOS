@@ -1,0 +1,71 @@
+{
+  "name": "nanogramics_pos_1.5",
+  "version": "3.0.6",
+  "description": "Professional POS system - Electron + SQLite",
+  "main": "main.js",
+  "author": "Nanogramics",
+  "license": "PROPRIETARY",
+ 
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build:renderer": "vite build",
+    "dist": "npm run build:renderer && electron-builder --win",
+    "build": "npm run build:renderer && electron-builder --win",
+    "build-win": "npm run build:renderer && electron-builder --win"
+  },
+
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "sqlite3": "^5.1.7"
+  },
+
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^25.1.8",
+    "vite": "^5.4.10"
+  },
+
+  "build": {
+    "appId": "com.lajpal.pos",
+    "productName": "nanogramics_pos_1.5",
+    "copyright": "Copyright 2026 Nanogramics",
+
+    "files": [
+      "backend/**/*",
+      "frontend/**/*",
+      "dist/renderer/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+
+    "asarUnpack": [
+      "node_modules/sqlite3/lib/binding/**"
+    ],
+
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon",
+      "signAndEditExecutable": false,
+      "sign": null
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "nanogramics_pos_1.5"
+    },
+
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

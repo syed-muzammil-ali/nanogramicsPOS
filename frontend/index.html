@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nanogramics | nanogramics_pos_1.5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── TOAST ── */
+    #toast-container {
+      position: fixed !important;
+      top: 22px !important;
+      left: 50% !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: translateX(-50%) !important;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+      min-width: 260px;
+    }
+    .toast {
+      padding: 10px 20px !important;
+      border-radius:30px !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      animation: toastIn .2s ease !important;
+      pointer-events: all;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+      white-space: nowrap;
+    }
+    .toast-icon { font-size: 14px; }
+    @keyframes toastIn {
+      from { opacity:0; transform: translateY(-12px) scale(0.92); }
+      to   { opacity:1; transform: translateY(0) scale(1); }
+    }
+    .toast.success { background:var(--panel2); color:var(--text); border:1px solid var(--border) !important; }
+    .toast.error   { background:var(--panel2); color:var(--text); border:1px solid var(--border) !important; }
+    .toast.warning { background:var(--panel2); color:var(--text); border:1px solid var(--border) !important; }
+    .toast.info    { background:var(--panel2); color:var(--text); border:1px solid var(--border) !important; }
+
+    /* ── THEME ── */
+    :root {
+      --bg:     #0b0d12;
+      --panel:  #13161f;
+      --panel2: #1a1e2a;
+      --border: #252836;
+      --yellow: #f5c518;
+      --muted:  #6b7280;
+    }
+    .sidebar {
+      background:linear-gradient(180deg, var(--panel2) 0%, var(--panel2) 100%) !important;
+      border-right:1px solid var(--border) !important;
+    }
+    .sidebar-logo h1 {
+      background:linear-gradient(135deg, var(--panel2), var(--panel2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color: transparent;
+      background-clip:text;
+    }
+    .nav-button.active {
+      background:linear-gradient(135deg, var(--panel2), var(--panel2)) !important;
+      box-shadow: 0 2px 12px rgba(245,197,24,0.25);
+    }
+    .product-card {
+      background:linear-gradient(145deg, var(--panel2), var(--panel2)) !important;
+      border:1px solid var(--border) !important;
+      transition: all .15s ease !important;
+    }
+    .product-card:hover {
+      border-color:var(--border) !important;
+      box-shadow: 0 0 0 1px #f5c51840, 0 4px 16px rgba(245,197,24,0.12) !important;
+      transform: translateY(-2px) !important;
+    }
+    .sales-checkout-panel {
+      background:linear-gradient(180deg, var(--panel2) 0%, var(--panel2) 100%) !important;
+      border-left:1px solid var(--border) !important;
+    }
+    .summary-row.total {
+      background:linear-gradient(135deg, var(--panel2), var(--panel2));
+      border-radius:10px;
+      padding: 10px 12px !important;
+      margin: 0 -4px;
+    }
+    .btn-primary {
+      background:linear-gradient(135deg, var(--panel2), var(--panel2)) !important;
+      box-shadow: 0 2px 10px rgba(245,197,24,0.2);
+    }
+    .btn-success {
+      background:linear-gradient(135deg, var(--panel2), var(--panel2)) !important;
+      color:var(--text);
+      border:none;
+      height: var(--btn-h);
+      border-radius:var(--radius-sm);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: var(--font-base);
+      font-family: 'Outfit', sans-serif;
+      transition: opacity .15s;
+      white-space: nowrap;
+      padding: 0 14px;
+      box-shadow: 0 2px 10px rgba(16,185,129,0.2);
+    }
+    .btn-success:hover { opacity: .88; }
+    .top-bar {
+      background:linear-gradient(90deg, var(--panel2), var(--panel2)) !important;
+      border-bottom:1px solid var(--border) !important;
+    }
+    .online-order-row {
+      background:linear-gradient(145deg, var(--panel2), var(--panel2)) !important;
+      border:1px solid var(--border) !important;
+    }
+    .online-order-row:hover { border-color:var(--border) !important; }
+    .modal {
+      background:var(--panel2) !important;
+      border:1px solid var(--border) !important;
+    }
+    .modal-header { background:var(--panel2) !important; }
+    .cart-item {
+      background:linear-gradient(145deg, var(--panel2), var(--panel2)) !important;
+      border:1px solid var(--border) !important;
+    }
+    .stat-card {
+      background:linear-gradient(145deg, var(--panel2), var(--panel2)) !important;
+      border:1px solid var(--border) !important;
+    }
+    .filter-tab.active {
+      background:linear-gradient(135deg, var(--panel2), var(--panel2)) !important;
+      box-shadow: 0 2px 8px rgba(245,197,24,0.2);
+    }
+    ::-webkit-scrollbar-thumb { background:var(--panel2) !important; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--panel2) !important; }
+    .rrow { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border); font-size:13px; }
+    .rrow:last-child { border-bottom:none; }
+
+    /* ── MODAL SCROLL (for tall user form) ── */
+    .modal-content {
+      max-height: 88vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    /* ── PERMISSION CHECKBOXES ── */
+    .perm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      background:var(--panel2);
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding: 14px;
+      margin-top: 8px;
+    }
+    .perm-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      color:var(--text);
+      user-select: none;
+      padding: 4px 0;
+    }
+    .perm-label:hover { color:var(--text); }
+    .perm-checkbox {
+      width: 16px;
+      height: 16px;
+      accent-color: #f5c518;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .perm-checkbox:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+  <link rel="stylesheet" href="css/professional.css">
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ══════════════════ LOGIN ══════════════════ -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-container">
+      <button type="button" class="theme-toggle btn-secondary login-theme" aria-label="Switch to dark mode">Dark mode</button>
+      <div class="login-logo">
+        <h1>Nanogramics</h1>
+        <p>RETAIL WORKSPACE</p>
+      </div>
+      <div class="login-welcome"><h2>Welcome back.</h2><p>Sign in to manage your store.</p></div>
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" placeholder="Enter username" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Enter password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;">Sign in to workspace →</button>
+        <div id="login-error" class="login-error" role="alert"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════════ MAIN APP ══════════════════ -->
+  <div id="main-app" class="main-app" style="display:none;">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h1>Nanogramics</h1>
+        <p>RETAIL WORKSPACE</p>
+      </div>
+      <div class="nav-section-label">WORKSPACE</div>
+      <nav id="nav-menu" class="nav-menu" aria-label="Main navigation"></nav>
+      <div class="sidebar-bottom">
+        <div id="clock" class="clock">00:00</div>
+        <div id="date-disp" class="date-disp">Jan 01</div>
+        <button id="btn-logout" class="btn-logout">Logout</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div><span class="workspace-eyebrow">STORE OPERATIONS</span><h2 id="page-title">Point of sale</h2></div>
+        <div class="topbar-actions"><button type="button" class="theme-toggle btn-secondary" aria-label="Switch to dark mode">Dark mode</button><span id="user-display" class="user-display"></span></div>
+      </div>
+
+      <!-- TABS -->
+      <div id="tab-container" class="tab-container">
+
+        <!-- ══ SALES TAB ══ -->
+        <div id="tab-sales" class="tab-content">
+          <div class="sales-layout">
+
+            <!-- LEFT: PRODUCTS -->
+            <div class="sales-products-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Product catalog</h3>
+                  <small>Find an item and add it to the current sale.</small>
+                </div>
+                <button id="btn-invoice-pdfs" class="btn-secondary">Invoice PDFs</button>
+              </div>
+              <div id="pos-pdf-status" role="status" hidden></div>
+              <div class="search-section">
+                <label for="search-product" class="pos-search-label">Find a product</label>
+                <input type="search" id="search-product" class="search-input" placeholder="Search by name or code…">
+                <div class="pos-filters">
+                  <label>Category<select id="pos-category" class="control-input"><option value="">All categories</option></select></label>
+                  <label>Brand<select id="pos-brand" class="control-input"><option value="">All brands</option></select></label>
+                </div>
+                <small id="pos-product-count"></small>
+              </div>
+              <div id="product-list" class="product-list"></div>
+            </div>
+
+            <!-- RIGHT: CHECKOUT -->
+            <div class="sales-checkout-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Current sale <span id="pos-cart-count">0 items</span></h3>
+                  <small>Review items, then take payment.</small>
+                </div>
+                <button id="btn-clear-cart" class="btn-secondary">Clear Cart</button>
+              </div>
+              <div class="sale-items-container">
+                <div id="cart-items" class="cart-items"></div>
+              </div>
+              <div class="pos-checkout-footer">
+              <div class="sale-summary">
+                <div class="summary-row">
+                  <span>Subtotal</span>
+                  <span id="sale-subtotal" class="mono">Rs 0</span>
+                </div>
+                <div class="summary-row">
+                  <label for="sale-discount">Discount (Rs)</label>
+                  <input type="number" id="sale-discount" class="summary-input" value="0" min="0">
+                </div>
+                <div class="summary-row">
+                  <label for="sale-delivery">Delivery (Rs)</label>
+                  <input type="number" id="sale-delivery" class="summary-input" value="0" min="0">
+                </div>
+                <div class="summary-row total">
+                  <span>Total due</span>
+                  <span id="sale-total" class="mono">Rs 0</span>
+                </div>
+              </div>
+              <div class="payment-section">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" class="control-input">
+                  <option value="cash">CASH</option>
+                  <option value="online">ONLINE TRANSFER</option>
+                </select>
+              </div>
+              <div id="cash-received-section" class="cash-received-section">
+                <div class="summary-row">
+                  <label for="cash-received">Cash Received</label>
+                  <input type="number" id="cash-received" class="summary-input" placeholder="0" min="0">
+                </div>
+                <div class="summary-row cashback-row" id="cashback-display-row">
+                  <span>Change / Cashback</span>
+                  <span id="cashback-amount" class="mono cashback-value">Rs 0</span>
+                </div>
+              </div>
+              <div class="sale-buttons">
+                <button id="btn-print-sale" class="btn-success btn-large">Complete &amp; print · F9</button>
+                <button id="btn-complete-sale" class="btn-primary btn-large">Complete without print</button>
+              </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <dialog id="invoice-pdf-dialog">
+          <div class="invoice-pdf-header"><h2>Invoice PDFs</h2><button class="btn-secondary" onclick="document.getElementById('invoice-pdf-dialog').close()">Close</button></div>
+          <p>Latest 100 matching invoices. Retry generates only the PDF; it does not create another sale.</p>
+          <form onsubmit="event.preventDefault(); sales.loadInvoicePdfs()" class="invoice-pdf-search"><input id="invoice-pdf-search" class="search-input" aria-label="Search invoice number" placeholder="Search invoice number"><button class="btn-primary">Search</button></form>
+          <div id="invoice-pdf-list"></div>
+        </dialog>
+
+        <!-- ══ WHOLESALE TAB ══ -->
+        <div id="tab-wholesale" class="tab-content" style="display:none;">
+          <div class="sales-layout">
+            <div class="sales-products-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Wholesale catalog</h3>
+                  <small>Choose products. Adjust quantities and prices in the cart.</small>
+                </div>
+              </div>
+              <div class="search-section">
+                <input type="text" id="wholesale-search" class="search-input" placeholder="  Search products...">
+              </div>
+              <div id="wholesale-product-list" class="product-list"></div>
+            </div>
+
+            <div class="sales-checkout-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Wholesale sale</h3>
+                  <small>Edit price per item before checkout</small>
+                </div>
+              </div>
+              <div class="sale-items-container">
+                <div id="wholesale-cart-items" class="cart-items"></div>
+              </div>
+              <div class="sale-summary">
+                <div class="summary-row">
+                  <span>Subtotal</span>
+                  <span id="wholesale-subtotal" class="mono">Rs 0</span>
+                </div>
+                <div class="summary-row">
+                  <span>Discount</span>
+                  <input type="number" id="wholesale-discount" class="summary-input" value="0" min="0">
+                </div>
+                <div class="summary-row">
+                  <span>Delivery</span>
+                  <input type="number" id="wholesale-delivery" class="summary-input" value="0" min="0">
+                </div>
+                <div class="summary-row total">
+                  <span>TOTAL</span>
+                  <span id="wholesale-total" class="mono">Rs 0</span>
+                </div>
+              </div>
+              <div class="payment-section">
+                <label>Payment Method</label>
+                <select id="wholesale-payment-method" class="control-input">
+                  <option value="cash">CASH</option>
+                  <option value="online">ONLINE TRANSFER</option>
+                </select>
+              </div>
+              <div class="sale-buttons">
+                <button id="btn-wholesale-complete" class="btn-primary btn-large">✓ Complete Wholesale Sale</button>
+                <button id="btn-wholesale-clear" class="btn-secondary">Clear Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ INVENTORY TAB ══ -->
+        <div id="tab-shop" class="tab-content" style="display:none;"></div>
+        <div id="tab-inventory" class="tab-content">
+          <div class="inventory-header">
+            <h3>Product Inventory</h3>
+            <div class="inventory-controls">
+              <button id="btn-add-product" class="btn-primary">+ Add Product</button>
+            </div>
+          </div>
+          <div class="inventory-search-bar">
+            <label for="inventory-search">Search inventory</label>
+            <div class="inventory-search-row">
+              <input type="search" id="inventory-search" class="search-input" placeholder="Name, brand, category, SKU or price" aria-describedby="inventory-search-help" autocomplete="off">
+              <button id="inventory-clear" class="btn-secondary" type="button">Clear filters</button>
+            </div>
+            <small id="inventory-search-help">Try saya kurta, saph or 2800. Words can match across product details.</small>
+          </div>
+          <details style="margin-bottom:14px"><summary>Manage categories</summary>
+            <form id="category-form" style="display:flex;gap:8px;margin:12px 0">
+              <input id="category-name" class="control-input" aria-label="New category name" placeholder="New category name" required maxlength="100">
+              <button class="btn-primary" type="submit">Create category</button>
+            </form>
+            <p>Reassign products before deleting a category that is in use.</p>
+            <div id="category-management-list" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+          </details>
+          <div id="inventory-category-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;flex-shrink:0;"></div>
+          <div id="inventory-results" role="status" aria-live="polite"></div>
+          <div id="inventory-list" class="inventory-list"></div>
+        </div>
+
+        <!-- ══ REPORTS TAB ══ -->
+        <div id="tab-reports" class="tab-content">
+          <div class="reports-header">
+            <h3>Sales Reports</h3>
+            <div class="report-controls">
+              <button id="btn-weekly-report"   class="btn-secondary"> This Week</button>
+              <button id="btn-monthly-report"  class="btn-secondary"> This Month</button>
+              <input type="date" id="report-start-date" class="control-input">
+              <input type="date" id="report-end-date"   class="control-input">
+              <button id="btn-generate-report" class="btn-primary"> Generate</button>
+              <button id="btn-pdf-report"      class="btn-success"> PDF</button>
+              <button id="btn-download-report" class="btn-secondary"> CSV</button>
+            </div>
+          </div>
+          <div id="report-stats" class="report-stats"></div>
+          <div id="report-table" class="report-table"></div>
+        </div>
+
+        <!-- ══ ONLINE ORDERS TAB ══ -->
+        <div id="tab-online" class="tab-content">
+          <div class="online-header">
+            <h3>Online Orders</h3>
+            <div class="online-controls">
+              <input type="date" id="online-report-date" class="control-input">
+              <button id="btn-new-online-order" class="btn-primary">+ New Order</button>
+            </div>
+          </div>
+
+          <div class="online-search-bar">
+            <div class="online-search-wrap">
+              <input type="text" id="online-search-input" class="search-input"
+                placeholder=" Search by Order # (e.g. KHI225) or customer name...">
+              <button id="btn-online-search-clear" class="btn-secondary btn-small" title="Clear search">✕</button>
+            </div>
+            <div style="margin:8px 0;">
+              <select id="online-city-filter" class="control-input"
+                style="height:40px;border:1px solid #333;border-radius:10px;background:#11131b;color:#fff;padding:0 12px;font-size:13px;width:100%;max-width:320px;">
+                <option value=""> All Cities</option>
+                <option value="Karachi">Karachi (KHI)</option>
+                <option value="Lahore">Lahore (LHR)</option>
+                <option value="Islamabad">Islamabad (ISL)</option>
+                <option value="Rawalpindi">Rawalpindi (RWP)</option>
+                <option value="Faisalabad">Faisalabad (FSL)</option>
+                <option value="Multan">Multan (MLT)</option>
+                <option value="Peshawar">Peshawar (PSH)</option>
+                <option value="Quetta">Quetta (QTA)</option>
+                <option value="Sialkot">Sialkot (SKT)</option>
+                <option value="Gujranwala">Gujranwala (GWL)</option>
+                <option value="Hyderabad">Hyderabad (HYD)</option>
+                <option value="Bahawalpur">Bahawalpur (BWP)</option>
+                <option value="Sargodha">Sargodha (SGD)</option>
+                <option value="Sukkur">Sukkur (SKR)</option>
+                <option value="Larkana">Larkana (LRK)</option>
+                <option value="Sheikhupura">Sheikhupura (SHK)</option>
+                <option value="Rahimyar Khan">Rahimyar Khan (RYK)</option>
+                <option value="Jhang">Jhang (JHG)</option>
+                <option value="Dera Ghazi Khan">Dera Ghazi Khan (DGK)</option>
+                <option value="Gujrat">Gujrat (GJT)</option>
+                <option value="Abbottabad">Abbottabad (ABT)</option>
+                <option value="Mardan">Mardan (MRD)</option>
+                <option value="Kasur">Kasur (KSR)</option>
+                <option value="Nawabshah">Nawabshah (NWS)</option>
+                <option value="Mingora">Mingora (MNG)</option>
+                <option value="Chiniot">Chiniot (CHN)</option>
+                <option value="Kamoke">Kamoke (KMK)</option>
+                <option value="Hafizabad">Hafizabad (HFZ)</option>
+                <option value="Sadiqabad">Sadiqabad (SDB)</option>
+                <option value="Mirpur Khas">Mirpur Khas (MPK)</option>
+                <option value="Okara">Okara (OKR)</option>
+                <option value="Mandi Bahauddin">Mandi Bahauddin (MBD)</option>
+                <option value="Jacobabad">Jacobabad (JCB)</option>
+                <option value="Shikarpur">Shikarpur (SKP)</option>
+                <option value="Khanewal">Khanewal (KNW)</option>
+                <option value="Muzaffargarh">Muzaffargarh (MZG)</option>
+                <option value="Khanpur">Khanpur (KNP)</option>
+                <option value="Ghotki">Ghotki (GHK)</option>
+                <option value="Hasilpur">Hasilpur (HSP)</option>
+                <option value="Other">Other (OTH)</option>
+              </select>
+            </div>
+            <div class="online-filter-tabs">
+              <button class="filter-tab active" data-filter="date"> By Date</button>
+              <button class="filter-tab" data-filter="all"> All Orders</button>
+              <button class="filter-tab" data-filter="cod"> COD</button>
+              <button class="filter-tab" data-filter="paid"> Paid</button>
+              <button class="filter-tab" data-filter="pending"> Pending</button>
+              <button class="filter-tab" data-filter="shipping"> Shipping</button>
+              <button class="filter-tab" data-filter="delivered"> Delivered</button>
+              <button class="filter-tab" data-filter="return"> Returned</button>
+            </div>
+          </div>
+
+          <div id="online-stats" class="report-stats" style="margin-bottom:15px;"></div>
+          <div id="online-orders-list" class="online-orders-list"></div>
+        </div>
+
+<!-- ══ RETURNS TAB ══ -->
+        <div id="tab-returns" class="tab-content">
+          <div class="returns-header">
+            <h3> Online Return Entry</h3>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px;">
+              Simple manual return entry for online orders — no invoice search required
+            </div>
+          </div>
+          
+<!-- Simple Online Return Form -->
+           <div id="simple-online-return-form" style="background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0;">
+             <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;">
+               <div class="form-group">
+                 <label>Return Amount (Rs) <span style="color:#ef4444;">*</span></label>
+                 <input type="number" id="simple-return-amount" class="control-input" 
+                   placeholder="e.g. 15000" min="1"
+                   style="height:46px;border:1px solid var(--border);border-radius:10px;background:#11131b;color:#fff;padding:0 12px;width:100%;font-size:15px;">
+               </div>
+               <div class="form-group">
+                 <label>Return Pieces <span style="color:#ef4444;">*</span></label>
+                 <input type="number" id="simple-return-pieces" class="control-input" 
+                   placeholder="e.g. 5" min="1"
+                   style="height:46px;border:1px solid var(--border);border-radius:10px;background:#11131b;color:#fff;padding:0 12px;width:100%;font-size:15px;">
+               </div>
+               <div class="form-group">
+                 <label>Description (Optional)</label>
+                 <textarea id="simple-return-description" class="control-input" 
+                   placeholder="e.g. Customer returned damaged suits"
+                   style="height:46px;border:1px solid var(--border);border-radius:10px;background:#11131b;color:#fff;padding:0 12px;width:100%;font-size:15px;resize:vertical;"></textarea>
+               </div>
+             </div>
+            <div style="margin-top:20px;">
+              <button id="btn-process-simple-return" class="btn-primary" style="height:48px;padding:0 30px;font-size:15px;">
+                 PROCESS ONLINE RETURN
+              </button>
+            </div>
+          </div>
+
+          <!-- Return History -->
+          <div style="margin-top:30px;">
+            <h4 style="color:var(--yellow);margin-bottom:12px;"> Return History</h4>
+            <div id="return-stats" class="report-stats" style="margin-bottom:14px;"></div>
+            <div style="overflow-x:auto;background:var(--panel2);border-radius:12px;border:1px solid var(--border);padding:4px;">
+              <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                <thead>
+                  <tr style="border-bottom:2px solid var(--border);">
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Return ID</th>
+                    <th style="padding:10px 12px;text-align:center;font-size:12px;color:var(--muted);">Total Pieces</th>
+                    <th style="padding:10px 12px;text-align:right;font-size:12px;color:var(--muted);">Return Amount</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Description</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Created By</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Date</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Time</th>
+                  </tr>
+                </thead>
+                <tbody id="returns-list-body">
+                  <tr>
+                    <td colspan="7" style="padding:20px;text-align:center;color:#6b7280;font-size:13px;">
+                      No returns processed yet
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ EXCHANGE TAB ══ -->
+        <div id="tab-exchange" class="tab-content">
+          <div class="returns-header">
+            <h3> Exchange Order</h3>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px;">
+              Search by invoice number — auto-detects Online/Offline, then select new products
+            </div>
+          </div>
+          <div class="returns-search-bar" style="display:flex;gap:10px;margin:16px 0;flex-wrap:wrap;">
+            <input type="text" id="exchange-invoice-search" class="search-input"
+              placeholder=" Enter Invoice Number (e.g. KHI225 or INV-123456)"
+              style="flex:1;min-width:250px;height:46px;font-size:15px;padding:0 16px;border-radius:10px;border:1px solid var(--border);background:#11131b;color:#fff;">
+            <button id="btn-search-exchange" class="btn-primary" style="height:46px;padding:0 24px;font-size:14px;border-radius:10px;">
+               Search
+            </button>
+          </div>
+          <div id="exchange-invoice-display">
+            <div style="background:var(--panel2);border:1px dashed var(--border);border-radius:12px;padding:40px;text-align:center;margin-top:16px;">
+              <div style="font-size:48px;margin-bottom:10px;"></div>
+              <p style="color:var(--muted);font-size:16px;">Search for an invoice to process exchange</p>
+              <p style="color:#6b7280;font-size:13px;margin-top:4px;">Enter invoice number above and click Search</p>
+            </div>
+          </div>
+          <div style="margin-top:30px;">
+            <h4 style="color:var(--yellow);margin-bottom:12px;"> Exchange History</h4>
+            <div id="exchange-stats" class="report-stats" style="margin-bottom:14px;"></div>
+            <div style="overflow-x:auto;background:var(--panel2);border-radius:12px;border:1px solid var(--border);padding:4px;">
+              <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                <thead>
+                  <tr style="border-bottom:2px solid var(--border);">
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Exchange #</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Original Inv #</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Type</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Customer</th>
+                    <th style="padding:10px 12px;text-align:right;font-size:12px;color:var(--muted);">Original</th>
+                    <th style="padding:10px 12px;text-align:right;font-size:12px;color:var(--muted);">New</th>
+                    <th style="padding:10px 12px;text-align:right;font-size:12px;color:var(--muted);">Balance</th>
+                    <th style="padding:10px 12px;text-align:left;font-size:12px;color:var(--muted);">Date</th>
+                  </tr>
+                </thead>
+                <tbody id="exchanges-list-body">
+                  <tr>
+                    <td colspan="8" style="padding:20px;text-align:center;color:#6b7280;font-size:13px;">
+                      No exchanges processed yet
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ AUDIT LOG TAB ══ -->
+        <div id="tab-audit" class="tab-content" style="display:none;">
+          <div class="audit-header">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+              <div>
+                <h3> Audit Log</h3>
+                <div style="font-size:13px;color:var(--muted);margin-top:4px;">
+                  Complete history of all actions performed in the system
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button id="btn-refresh-audit" class="btn-secondary"> Refresh</button>
+                <button id="btn-export-audit"  class="btn-success"> Export CSV</button>
+                <button id="btn-clear-old-audit"
+                  style="background:#7f1d1d;color:#fca5a5;border:none;padding:8px 16px;
+                         border-radius:8px;cursor:pointer;font-weight:600;font-family:'Outfit',sans-serif;">
+                   Clear Old (90d+)
+                </button>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+              <input type="date" id="audit-start-date" class="control-input"
+                style="height:40px;border:1px solid var(--border);border-radius:10px;background:#11131b;color:#fff;padding:0 12px;">
+              <input type="date" id="audit-end-date" class="control-input"
+                style="height:40px;border:1px solid var(--border);border-radius:10px;background:#11131b;color:#fff;padding:0 12px;">
+              <input type="text" id="audit-search" class="search-input"
+                placeholder=" Search actions..."
+                style="height:40px;flex:1;min-width:200px;">
+              <button id="btn-filter-audit" class="btn-primary" style="height:40px;padding:0 20px;">
+                Filter
+              </button>
+            </div>
+          </div>
+          <div id="audit-stats" class="report-stats" style="margin:12px 0;"></div>
+          <div style="overflow-x:auto;background:var(--panel2);border-radius:12px;border:1px solid var(--border);padding:4px;margin-top:12px;">
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+              <thead>
+                <tr style="border-bottom:2px solid var(--border);">
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">#</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">Date &amp; Time</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">User</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">Role</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">System</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">Action</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">Invoice</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">Customer</th>
+                  <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);">Details</th>
+                </tr>
+              </thead>
+              <tbody id="audit-log-body">
+                <tr>
+                  <td colspan="9" style="padding:30px;text-align:center;color:#6b7280;font-size:13px;">
+                    Loading audit logs...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:var(--muted);text-align:center;">
+            Showing last 500 entries &bull; Logs are automatically recorded for all actions
+          </div>
+        </div>
+
+        <!-- ══ SETTINGS TAB ══ -->
+        <div id="tab-settings" class="tab-content">
+          <div class="settings-header"><h3>Settings</h3></div>
+          <div class="settings-content">
+            <div class="settings-section">
+              <h4>User Management</h4>
+              <div id="users-list" class="users-list"></div>
+              <button id="btn-add-user" class="btn-primary" style="margin-top:12px;">+ Add User</button>
+            </div>
+            <div class="settings-section">
+              <h4>Database</h4>
+              <button id="btn-backup-db" class="btn-secondary"> Create Backup</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /tab-container -->
+    </main>
+  </div><!-- /main-app -->
+
+</div><!-- /app -->
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- MODALS                                                        -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div id="modal-overlay" class="modal-overlay"></div>
+
+<!-- ══ PRODUCT MODAL ══ -->
+<div id="modal-product-form" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-product-title">Add Product</h3>
+      <button class="modal-close">×</button>
+    </div>
+    <form id="product-form" class="modal-form">
+      <input type="hidden" id="product-code">
+      <div class="form-group">
+        <label>Category <span style="color:#ef4444;">*</span></label>
+        <select id="product-category" class="control-input" required
+          style="height:50px;border:1px solid var(--border);border-radius:12px;background:#11131b;color:white;padding:0 15px;">
+          <option value="">-- Select Category --</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" id="product-name" placeholder="e.g. 3pcs Suite" required>
+      </div>
+      <div class="form-group">
+        <label>Price (Rs)</label>
+        <input type="number" id="product-price" placeholder="e.g. 3500" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="product-brand">Brand (optional)</label>
+        <input type="text" id="product-brand" placeholder="e.g. Saya or Sapphire">
+      </div>
+      <div class="form-group">
+        <label for="product-code-display">SKU / Code</label>
+        <input type="text" id="product-code-display" readonly placeholder="Generated when the product is added">
+      </div>
+      <div class="form-group">
+        <label>Stock Quantity</label>
+        <input type="number" id="product-qty" placeholder="999" min="0" value="999">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Save Product</button>
+        <button type="button" class="btn-secondary modal-close">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ══ USER MODAL (UPDATED: designation, description, status, permissions) ══ -->
+<div id="modal-user-form" class="modal">
+  <div class="modal-content" style="width:560px;max-width:95vw;">
+    <div class="modal-header">
+      <h3 id="modal-user-title">Add User</h3>
+      <button class="modal-close">×</button>
+    </div>
+    <form id="user-form" class="modal-form">
+      <input type="hidden" id="user-id">
+
+      <!-- ── SECTION: Account Info ── -->
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+                  letter-spacing:1px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border);">
+        Account Information
+      </div>
+
+      <div class="form-group">
+        <label>Username <span style="color:#ef4444;">*</span></label>
+        <input type="text" id="user-username" placeholder="Enter username" required autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="user-password" placeholder="Min 6 characters" autocomplete="new-password">
+        <small style="color:#6b7280;font-size:11px;margin-top:4px;display:block;">
+          Leave blank when editing to keep the current password.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Role <span style="color:#ef4444;">*</span></label>
+        <select id="user-role" class="control-input"
+          style="height:50px;border:1px solid var(--border);border-radius:12px;background:#11131b;color:white;padding:0 15px;">
+          <option value="cashier">Cashier</option>
+          <option value="admin">Admin</option>
+        </select>
+        <small style="color:#6b7280;font-size:11px;margin-top:4px;display:block;">
+          Admin has full access to all pages regardless of permissions below.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select id="user-status" class="control-input"
+          style="height:50px;border:1px solid var(--border);border-radius:12px;background:#11131b;color:white;padding:0 15px;">
+          <option value="active">✓ Active</option>
+          <option value="inactive">✗ Inactive</option>
+        </select>
+      </div>
+
+      <!-- ── SECTION: Identity ── -->
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+                  letter-spacing:1px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">
+        Identity &amp; Description
+      </div>
+
+      <div class="form-group">
+        <label>Designation</label>
+        <input type="text" id="user-designation"
+          placeholder="e.g. Online Sales Executive, Cashier, Warehouse Staff">
+        <small style="color:#6b7280;font-size:11px;margin-top:4px;display:block;">
+          Job title shown in user list and top bar.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Description <span style="color:#6b7280;font-weight:400;">(Optional)</span></label>
+        <textarea id="user-description"
+          placeholder="e.g. Handles online customer orders and returns."
+          style="height:70px;width:100%;background:#11131b;border:1px solid var(--border);
+                 border-radius:12px;color:#fff;padding:12px 15px;font-size:13px;
+                 font-family:'Outfit',sans-serif;resize:vertical;"></textarea>
+      </div>
+
+      <!-- ── SECTION: Page Permissions ── -->
+      <div id="permissions-section"
+        style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+               letter-spacing:1px;margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);">
+        Page Access Permissions
+      </div>
+
+      <p class="perm-note"
+        style="color:#6b7280;font-size:12px;margin:0 0 10px;">
+        Select which pages this user can access.
+      </p>
+
+      <div class="perm-grid">
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="sales">
+           Sales POS
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="inventory">
+           Inventory
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="online">
+           Online Orders
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="returns">
+           Returns
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="exchange">
+           Exchange
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="reports">
+           Reports
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="audit">
+           Audit Log
+        </label>
+        <label class="perm-label">
+          <input type="checkbox" class="perm-checkbox" value="settings">
+           Settings
+        </label>
+      </div>
+      <small style="color:#6b7280;font-size:11px;margin-top:6px;display:block;">
+        Admin users always have full access — these checkboxes do not apply to Admin accounts.
+      </small>
+
+      <!-- ── ACTIONS ── -->
+      <div class="form-actions" style="margin-top:20px;">
+        <button type="submit" class="btn-primary">Save User</button>
+        <button type="button" class="btn-secondary modal-close">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ══ ONLINE ORDER MODAL ══ -->
+<div id="modal-online-order" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>New Online Order</h3>
+      <button class="modal-close">×</button>
+    </div>
+    <form id="online-order-form" class="modal-form">
+      <div class="form-group">
+        <label>Customer Name</label>
+        <input type="text" id="online-customer-name" placeholder="Full name" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" id="online-customer-phone" placeholder="03XX-XXXXXXX" required>
+      </div>
+      <div class="form-group">
+        <label>City <span style="color:#ef4444;">*</span></label>
+        <select id="online-city" class="control-input" required
+          style="height:50px;border:none;border-radius:12px;background:#11131b;color:white;padding:0 15px;">
+          <option value="">-- Select City --</option>
+          <option value="Karachi">Karachi (KHI)</option>
+          <option value="Lahore">Lahore (LHR)</option>
+          <option value="Islamabad">Islamabad (ISL)</option>
+          <option value="Rawalpindi">Rawalpindi (RWP)</option>
+          <option value="Faisalabad">Faisalabad (FSL)</option>
+          <option value="Multan">Multan (MLT)</option>
+          <option value="Peshawar">Peshawar (PSH)</option>
+          <option value="Quetta">Quetta (QTA)</option>
+          <option value="Sialkot">Sialkot (SKT)</option>
+          <option value="Gujranwala">Gujranwala (GWL)</option>
+          <option value="Hyderabad">Hyderabad (HYD)</option>
+          <option value="Bahawalpur">Bahawalpur (BWP)</option>
+          <option value="Sargodha">Sargodha (SGD)</option>
+          <option value="Sukkur">Sukkur (SKR)</option>
+          <option value="Larkana">Larkana (LRK)</option>
+          <option value="Sheikhupura">Sheikhupura (SHK)</option>
+          <option value="Rahimyar Khan">Rahimyar Khan (RYK)</option>
+          <option value="Jhang">Jhang (JHG)</option>
+          <option value="Dera Ghazi Khan">Dera Ghazi Khan (DGK)</option>
+          <option value="Gujrat">Gujrat (GJT)</option>
+          <option value="Abbottabad">Abbottabad (ABT)</option>
+          <option value="Mardan">Mardan (MRD)</option>
+          <option value="Kasur">Kasur (KSR)</option>
+          <option value="Nawabshah">Nawabshah (NWS)</option>
+          <option value="Mingora">Mingora (MNG)</option>
+          <option value="Chiniot">Chiniot (CHN)</option>
+          <option value="Kamoke">Kamoke (KMK)</option>
+          <option value="Hafizabad">Hafizabad (HFZ)</option>
+          <option value="Sadiqabad">Sadiqabad (SDB)</option>
+          <option value="Mirpur Khas">Mirpur Khas (MPK)</option>
+          <option value="Okara">Okara (OKR)</option>
+          <option value="Mandi Bahauddin">Mandi Bahauddin (MBD)</option>
+          <option value="Jacobabad">Jacobabad (JCB)</option>
+          <option value="Shikarpur">Shikarpur (SKP)</option>
+          <option value="Khanewal">Khanewal (KNW)</option>
+          <option value="Muzaffargarh">Muzaffargarh (MZG)</option>
+          <option value="Khanpur">Khanpur (KNP)</option>
+          <option value="Ghotki">Ghotki (GHK)</option>
+          <option value="Hasilpur">Hasilpur (HSP)</option>
+          <option value="Other">Other (OTH)</option>
+        </select>
+        <small style="color:#6b7280;font-size:11px;margin-top:4px;display:block;">
+          Order ID will be generated based on selected city (e.g. KHI225, ISL445)
+        </small>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea id="online-customer-address" placeholder="Delivery address" style="height:80px;"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Products <span style="color:#ef4444;">*</span></label>
+        <input type="text" id="online-product-search" placeholder="Search products by name or code..."
+          style="width:100%;margin-bottom:8px;">
+        <div id="online-product-picker"
+          style="max-height:220px;overflow-y:auto;border:1px solid var(--border);border-radius:12px;background:#11131b;padding:8px;">
+        </div>
+        <small style="color:#6b7280;font-size:11px;margin-top:4px;display:block;">
+          Select products and enter quantity for each item
+        </small>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Total Amount (Rs)</label>
+          <input type="number" id="online-total" placeholder="0" min="0">
+        </div>
+        <div class="form-group">
+          <label>Delivery Charges</label>
+          <input type="number" id="online-delivery" placeholder="0" value="0" min="0">
+        </div>
+        <div class="form-group">
+          <label>Discount</label>
+          <input type="number" id="online-discount" placeholder="0" value="0" min="0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Payment Status</label>
+        <select id="online-payment-status" class="control-input"
+          style="height:50px;border:none;border-radius:12px;background:#11131b;color:white;padding:0 15px;">
+          <option value="cod">COD (Cash on Delivery)</option>
+          <option value="paid">Paid</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Weight (kg)</label>
+        <input type="number" id="online-weight" placeholder="e.g. 1.5" min="0" step="0.1">
+      </div>
+      <div class="form-group">
+        <label>Notes (Optional)</label>
+        <input type="text" id="online-notes" placeholder="Any special notes">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Create Order</button>
+        <button type="button" class="btn-secondary modal-close">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container" class="toast-container"></div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS — ORDER IS CRITICAL                                   -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<script src="js/utils.js"></script>
+<script src="js/thermalReceipt.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/inventory.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/sales.js"></script>
+<script src="js/wholesale.js"></script>
+<script src="js/reports.js"></script>
+<script src="js/online.js"></script>
+<script src="js/returns.js"></script>
+<script src="js/exchange.js"></script>
+<script src="js/audit.js"></script>
+<script src="js/settings.js"></script><!-- NEW: settings module with user management + permissions -->
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

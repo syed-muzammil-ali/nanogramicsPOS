@@ -1,0 +1,59 @@
+# Dependencies and package-manager caches
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Electron/Vite/build output
+dist/
+build/*
+!build/icon.ico
+!build/icon.png
+release/
+out/
+.vite/
+
+# Runtime databases, WAL files, backups, and exports
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+backups/
+reports/
+exports/
+receipts/
+invoices/
+
+# Temporary QA artifacts, caches, logs, and generated files
+tmp/
+*.log
+*.cache
+*.tmp
+coverage/
+
+# Local/editor/OS metadata
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.DS_Store
+Thumbs.db
+
+# Local-only backup copies and unrelated scratch directories
+.ui-backup/
+/.agents/

@@ -254,113 +254,45 @@ These are development priorities, not promises of currently available functional
 <h2 align="center">📸 Nanogramics POS Screenshots</h2>
 
 <p align="center">
-  Explore the modern interface and powerful business-management
-  features of Nanogramics POS.
+  Explore the modern interface and powerful business-management features of Nanogramics POS.
 </p>
 
-<br>
-
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img
-        src="https://lh3.googleusercontent.com/d/1LQEe4XsN66FOHOP06i6KpgJG4Iz9iL7w"
-        alt="Nanogramics POS Dashboard"
-        width="100%"
-      />
-      <br>
-      <strong>Main Dashboard</strong>
-    </td>
-
-    <td align="center" width="50%">
-      <img
-        src="https://lh3.googleusercontent.com/d/1fMixHWsXewuwDNtP3Kq_vJuYEZALe7Ot"
-        alt="Nanogramics POS Sales"
-        width="100%"
-      />
-      <br>
-      <strong>Sales Management</strong>
-    </td>
-  </tr>
-
-  <tr>
-    <td align="center" width="50%">
-      <img
-        src="https://lh3.googleusercontent.com/d/19MNFsK9dSBGKWUe_nAY7s3a8jg1YZZ5W"
-        alt="Nanogramics POS Online Orders"
-        width="100%"
-      />
-      <br>
-      <strong>Online Orders</strong>
-    </td>
-
-    <td align="center" width="50%">
-      <img
-        src="https://lh3.googleusercontent.com/d/1gxdM8XlVWuzWE1sd_Xamv5clG2SCZwQr"
-        alt="Nanogramics POS Inventory"
-        width="100%"
-      />
-      <br>
-      <strong>Inventory Management</strong>
-    </td>
-  </tr>
-</table>
-
-<br>
-
+<h3 align="center">Main Dashboard</h3>
 <p align="center">
-  <img
-    src="https://lh3.googleusercontent.com/d/1VwUKIZyWP5aZDPnryQEvKLyG6ZG7BCLi"
-    alt="Nanogramics POS Reports"
-    width="85%"
-  />
-  <br>
-  <strong>Reports and Business Analytics</strong>
+  <img src="https://lh3.googleusercontent.com/d/1LQEe4XsN66FOHOP06i6KpgJG4Iz9iL7w=w1200"
+       alt="Nanogramics POS Dashboard"
+       width="850">
+</p>
+
+<h3 align="center">Sales Management</h3>
+<p align="center">
+  <img src="https://lh3.googleusercontent.com/d/1fMixHWsXewuwDNtP3Kq_vJuYEZALe7Ot=w1200"
+       alt="Nanogramics POS Sales Management"
+       width="850">
+</p>
+
+<h3 align="center">Online Order Management</h3>
+<p align="center">
+  <img src="https://lh3.googleusercontent.com/d/19MNFsK9dSBGKWUe_nAY7s3a8jg1YZZ5W=w1200"
+       alt="Nanogramics POS Online Orders"
+       width="850">
+</p>
+
+<h3 align="center">Inventory Management</h3>
+<p align="center">
+  <img src="https://lh3.googleusercontent.com/d/1gxdM8XlVWuzWE1sd_Xamv5clG2SCZwQr=w1200"
+       alt="Nanogramics POS Inventory"
+       width="850">
+</p>
+
+<h3 align="center">Reports and Business Analytics</h3>
+<p align="center">
+  <img src="https://lh3.googleusercontent.com/d/1VwUKIZyWP5aZDPnryQEvKLyG6ZG7BCLi=w1200"
+       alt="Nanogramics POS Reports"
+       width="850">
 </p>
 
 The package metadata identifies the project as `PROPRIETARY`. No open-source license is claimed here. Use, redistribution, and commercial rights should be confirmed with the project owner.
-
-<h2 align="center">Nanogramics POS Screenshots</h2>
-
-<p align="center">
-  <img
-    src="https://drive.google.com/thumbnail?id=1LQEe4XsN66FOHOP06i6KpgJG4Iz9iL7w&sz=w1200"
-    alt="Nanogramics POS Screenshot 1"
-    width="850"
-  />
-</p>
-
-<p align="center">
-  <img
-    src="https://drive.google.com/thumbnail?id=1fMixHWsXewuwDNtP3Kq_vJuYEZALe7Ot&sz=w1200"
-    alt="Nanogramics POS Screenshot 2"
-    width="850"
-  />
-</p>
-
-<p align="center">
-  <img
-    src="https://drive.google.com/thumbnail?id=19MNFsK9dSBGKWUe_nAY7s3a8jg1YZZ5W&sz=w1200"
-    alt="Nanogramics POS Screenshot 3"
-    width="850"
-  />
-</p>
-
-<p align="center">
-  <img
-    src="https://drive.google.com/thumbnail?id=1gxdM8XlVWuzWE1sd_Xamv5clG2SCZwQr&sz=w1200"
-    alt="Nanogramics POS Screenshot 4"
-    width="850"
-  />
-</p>
-
-<p align="center">
-  <img
-    src="https://drive.google.com/thumbnail?id=1VwUKIZyWP5aZDPnryQEvKLyG6ZG7BCLi&sz=w1200"
-    alt="Nanogramics POS Screenshot 5"
-    width="850"
-  />
-</p>
 
 Developed by **Nanogramics**  
 Website: [nanogramics.tech](https://nanogramics.tech)  

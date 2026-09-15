@@ -253,6 +253,48 @@ These are development priorities, not promises of currently available functional
 
 The package metadata identifies the project as `PROPRIETARY`. No open-source license is claimed here. Use, redistribution, and commercial rights should be confirmed with the project owner.
 
+<h2 align="center">Nanogramics POS Screenshots</h2>
+
+<p align="center">
+  <img
+    src="https://drive.google.com/thumbnail?id=1LQEe4XsN66FOHOP06i6KpgJG4Iz9iL7w&sz=w1200"
+    alt="Nanogramics POS Screenshot 1"
+    width="850"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://drive.google.com/thumbnail?id=1fMixHWsXewuwDNtP3Kq_vJuYEZALe7Ot&sz=w1200"
+    alt="Nanogramics POS Screenshot 2"
+    width="850"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://drive.google.com/thumbnail?id=19MNFsK9dSBGKWUe_nAY7s3a8jg1YZZ5W&sz=w1200"
+    alt="Nanogramics POS Screenshot 3"
+    width="850"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://drive.google.com/thumbnail?id=1gxdM8XlVWuzWE1sd_Xamv5clG2SCZwQr&sz=w1200"
+    alt="Nanogramics POS Screenshot 4"
+    width="850"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://drive.google.com/thumbnail?id=1VwUKIZyWP5aZDPnryQEvKLyG6ZG7BCLi&sz=w1200"
+    alt="Nanogramics POS Screenshot 5"
+    width="850"
+  />
+</p>
+
 Developed by **Nanogramics**  
 Website: [nanogramics.tech](https://nanogramics.tech)  
 Current business deployment: **Lajpal Brand Hub**

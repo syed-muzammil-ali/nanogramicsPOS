@@ -254,42 +254,38 @@ These are development priorities, not promises of currently available functional
 <h2 align="center">📸 Nanogramics POS Screenshots</h2>
 
 <p align="center">
-  Explore the modern interface and powerful business-management features of Nanogramics POS.
+  A modern desktop POS solution for managing sales, inventory,
+  online orders, returns, exchanges and business reports.
 </p>
 
-<h3 align="center">Main Dashboard</h3>
+<h3 align="center">Secure Login</h3>
+
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/d/1LQEe4XsN66FOHOP06i6KpgJG4Iz9iL7w=w1200"
-       alt="Nanogramics POS Dashboard"
-       width="850">
+  <img
+    src="./screenshots/login-page.png"
+    alt="Nanogramics POS Login Page"
+    width="850"
+  >
 </p>
 
-<h3 align="center">Sales Management</h3>
-<p align="center">
-  <img src="https://lh3.googleusercontent.com/d/1fMixHWsXewuwDNtP3Kq_vJuYEZALe7Ot=w1200"
-       alt="Nanogramics POS Sales Management"
-       width="850">
-</p>
+<h3 align="center">Point of Sale Dashboard</h3>
 
-<h3 align="center">Online Order Management</h3>
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/d/19MNFsK9dSBGKWUe_nAY7s3a8jg1YZZ5W=w1200"
-       alt="Nanogramics POS Online Orders"
-       width="850">
-</p>
-
-<h3 align="center">Inventory Management</h3>
-<p align="center">
-  <img src="https://lh3.googleusercontent.com/d/1gxdM8XlVWuzWE1sd_Xamv5clG2SCZwQr=w1200"
-       alt="Nanogramics POS Inventory"
-       width="850">
+  <img
+    src="./screenshots/pos-dashboard.png"
+    alt="Nanogramics POS Dashboard"
+    width="850"
+  >
 </p>
 
 <h3 align="center">Reports and Business Analytics</h3>
+
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/d/1VwUKIZyWP5aZDPnryQEvKLyG6ZG7BCLi=w1200"
-       alt="Nanogramics POS Reports"
-       width="850">
+  <img
+    src="./screenshots/reports-module.png"
+    alt="Nanogramics POS Reports Module"
+    width="850"
+  >
 </p>
 
 The package metadata identifies the project as `PROPRIETARY`. No open-source license is claimed here. Use, redistribution, and commercial rights should be confirmed with the project owner.
